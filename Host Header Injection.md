@@ -5,8 +5,8 @@ HTTP Host header attacks exploit vulnerable websites that handle the value of th
 
 ## Where to find
 In the feature where the website can send email to us. For example forgot password / newsletter.
-when Host is reflected in Login page, toghether with cache poisoning, steal password.
-Admin modulo is acceptable locally, internal IP.
+when Host is reflected in Login page, toghether with cache poisoning, increase the possibility to steal password.
+Admin module accept access locally or with internal IP.
 
 ## How to exploit
 1. Change the host header
