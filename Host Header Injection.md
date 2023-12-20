@@ -4,15 +4,16 @@
 HTTP Host header attacks exploit vulnerable websites that handle the value of the Host header in an unsafe way. If the server implicitly trusts the Host header, and fails to validate or escape it properly, an attacker may be able to use this input to inject harmful payloads that manipulate server-side behavior. Attacks that involve injecting a payload directly into the Host header are often known as "Host header injection" attacks.
 
 ## Where to find
-In the feature where the website can send email to us. For example forgot password / newsletter.
-when Host is reflected in Login page, toghether with cache poisoning, increase the possibility to steal password.
-Admin module accept access locally or with internal IP.
+* In the feature where the website can send email to us. For example forgot password / newsletter.
+* when Host is reflected in Login page, toghether with cache poisoning, increase the possibility to steal password.
+* Admin module accept access locally or with internal IP.
 
 ## How to exploit
+#### Note: evil-website.com can be (localhost, Private IP, SSRF)
 1. Change the host header
 ```
 GET /index.php HTTP/1.1
-Host: evil-website.com or localhost or PrivateIP
+Host: evil-website.com
 ...
 ```
 2. Duplicating the host header
