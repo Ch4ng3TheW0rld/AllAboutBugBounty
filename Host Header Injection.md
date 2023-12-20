@@ -31,6 +31,7 @@ Host: evil-website.com
 ```
 X-Forwarded-For: evil-website.com
 X-Forwarded-Host: evil-website.com
+X-Forwarded-Server: evil-website.com
 X-Client-IP: evil-website.com
 X-Remote-IP: evil-website.com
 X-Remote-Addr: evil-website.com
