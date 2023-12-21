@@ -9,7 +9,7 @@ HTTP Host header attacks exploit vulnerable websites that handle the value of th
 * Admin module accept access locally or with internal IP.
 
 ## How to exploit
-#### Note: evil-website.com can be (localhost, Private IP, SSRF)
+#### Note: evil-website.com can be (localhost, Routing-SSRF)
 1. Change the host header
 ```
 GET /index.php HTTP/1.1
