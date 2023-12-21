@@ -4,7 +4,11 @@
 A CRLF Injection attack occurs when a user manages to submit a CRLF into an application. This is most commonly done by modifying an HTTP parameter or URL.
 
 ## Where to find
-It can be found anywhere, always check the request and response. Try to search for parameters that lead to redirects, you can see the response is (301, 302, 303, 307, 308).
+* It can be found anywhere, always check the request and response. Try to search for parameters that lead to redirects, you can see the response is (301, 302, 303, 307, 308).
+* SMTP mail input
+
+## Impact
+Redirect to malicious site or leaked mail information
 
 ## How to exploit
 1. Basic payload
