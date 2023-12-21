@@ -51,8 +51,7 @@ Via: 1.1 varnish-v4
 Age: 174
 Cache-Control: public, max-age=1800
 …
-<script src="https://evil-website.com/x.js">
-</script>
+<script src="https://evil-website.com/x.js"></script>
 ```
 
 3. Selective poisoning
