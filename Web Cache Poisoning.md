@@ -9,10 +9,10 @@ The objective of web cache poisoning is to send a request that causes a harmful 
 * Cookie with Cache (unkeyed) and its value reflected in Response   
 
 ## Impact
-* Session Hijacking (Web Cache Poisoning + [Host Header Injection](https://github.com/Ch4ng3TheW0rld/AllAboutBugBounty/blob/master/Host%20Header%20Injection.md) + XSS)
+* Session Hijacking (Web Cache Poisoning + [Host Header Injection](https://github.com/Ch4ng3TheW0rld/AllAboutBugBounty/blob/master/Host%20Header%20Injection.md) + [XSS](https://github.com/Ch4ng3TheW0rld/AllAboutBugBounty/blob/master/Cross%20Site%20Scripting.md))
 * Password Steal (Web Cache Poisoning + [Host Header Injection](https://github.com/Ch4ng3TheW0rld/AllAboutBugBounty/blob/master/Host%20Header%20Injection.md))
-* Session Hijacking (Web Cache Poisoning + Parameter + XSS)
-* Session Hijacking (Web Cache Poisoning + Http Parameter Pollution + XSS)
+* Session Hijacking (Web Cache Poisoning + Parameter + [XSS](https://github.com/Ch4ng3TheW0rld/AllAboutBugBounty/blob/master/Cross%20Site%20Scripting.md))
+* Session Hijacking (Web Cache Poisoning + Http Parameter Pollution + [XSS](https://github.com/Ch4ng3TheW0rld/AllAboutBugBounty/blob/master/Cross%20Site%20Scripting.md))
 
 ## How to exploit
 Note: Cache-Control: public, no-cache or X-cache: miss, hit
