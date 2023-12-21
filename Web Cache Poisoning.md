@@ -9,8 +9,8 @@ The objective of web cache poisoning is to send a request that causes a harmful 
 * Cookie with Cache (unkeyed)
 
 ## Impact
-* Session Hijacking (Web Cache Poisoning + Host Header Injection + XSS)
-* Password Steal (Web Cache Poisoning + Host Header Injection)
+* Session Hijacking (Web Cache Poisoning + [Host Header Injection](https://github.com/Ch4ng3TheW0rld/AllAboutBugBounty/blob/master/Host%20Header%20Injection.md) + XSS)
+* Password Steal (Web Cache Poisoning + [Host Header Injection](https://github.com/Ch4ng3TheW0rld/AllAboutBugBounty/blob/master/Host%20Header%20Injection.md))
 
 ## How to exploit
 1. Basic poisoning
