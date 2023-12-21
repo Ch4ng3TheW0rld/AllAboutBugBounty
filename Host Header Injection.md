@@ -5,8 +5,11 @@ HTTP Host header attacks exploit vulnerable websites that handle the value of th
 
 ## Where to find
 * In the feature where the website can send email to us. For example forgot password / newsletter.
-* when Host is reflected in Login page, toghether with cache poisoning, increase the possibility to steal password.
-* Admin module accept access locally or with internal IP.
+* Admin module that accept access locally or internal IP.
+
+## Impact
+* Bypass Admin Module
+* Reset Password Poisoning
 
 ## How to exploit
 #### Note: evil-website.com can be (localhost, Routing-SSRF)
