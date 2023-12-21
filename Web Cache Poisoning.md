@@ -4,7 +4,9 @@
 The objective of web cache poisoning is to send a request that causes a harmful response that gets saved in the cache and served to other users.
 
 ## Where to find
-`-`
+* Parameter with Cache (unkeyed)
+* Header with Cache (unkeyed)
+* Cookie with Cache (unkeyed)
 
 ## How to exploit
 1. Basic poisoning
