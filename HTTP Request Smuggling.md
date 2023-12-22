@@ -1,10 +1,16 @@
 # HTTP Request Smuggling
 
 ## Introduction
-A CRLF Injection attack occurs when a user manages to submit a CRLF into an application. This is most commonly done by modifying an HTTP parameter or URL.
+HTTP request smuggling is a technique for interfering with the way a web site processes sequences of HTTP requests that are received from one or more users. Request smuggling vulnerabilities are often critical in nature, allowing an attacker to bypass security controls, gain unauthorized access to sensitive data, and directly compromise other application users.
 
 ## Where to find
-It can be found anywhere, always check the request and response. Try to search for parameters that lead to redirects, you can see the response is (301, 302, 303, 307, 308).
+Request smuggling is primarily associated with HTTP/1 requests.
+websites that support HTTP/2 may be vulnerable, depending on their back-end architecture (HTTP/1).
+
+## Impact
+bypass security controls
+Gain unauthorized access to sensitive data
+DoS aplication user with 404
 
 ## How to exploit
 1. Basic payload
