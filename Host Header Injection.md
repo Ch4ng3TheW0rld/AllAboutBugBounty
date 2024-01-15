@@ -12,7 +12,7 @@ HTTP Host header attacks exploit vulnerable websites that handle the value of th
 * Reset Password Poisoning
 
 ## How to exploit
-#### Note: evil-website.com can be (localhost, Routing-SSRF)
+#### Note: evil-website.com can be (127.0.0.1, localhost, Routing-SSRF)
 1. Change the host header
 ```
 GET /index.php HTTP/1.1
