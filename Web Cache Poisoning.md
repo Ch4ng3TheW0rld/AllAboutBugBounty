@@ -16,6 +16,7 @@ The objective of web cache poisoning is to send a request that causes a harmful 
 
 ## How to exploit
 Note: Cache-Control: public, no-cache or X-cache: miss, hit
+Note: remove cache-buster, after cache hit to work bellow method
 1. Basic Header poisoning
 ```
 GET / HTTP/1.1
