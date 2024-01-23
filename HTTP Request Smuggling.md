@@ -18,14 +18,14 @@ Note: length is hughly important for this attack, calculate correctly
 Note: BurpRepeater, set to change version to HTTP/1, and uncheck "no header update"
 
 Burp Repeater
-1.Change HTTP/2 to HTTP/1
-2.Send to BurpIntruder
+1. Change HTTP/2 to HTTP/1
+2. Send to BurpIntruder
 
 BurpIntruder
-1.Uncheck "Update Host Header to match target"
-2.Payload: "Null Payloads" & Continue indefinitely, uncheck URL-encode
-3.Resource Pool: Max-Concurrent=1, Fixed-Delay=1000ms
-4.Settings: HTTPversion=override, uncheck Default to HTTP/2 & uncheck “Update content-length header”
+1. Uncheck "Update Host Header to match target"
+2. Payload: "Null Payloads" & Continue indefinitely, uncheck URL-encode
+3. Resource Pool: Max-Concurrent=1, Fixed-Delay=1000ms
+4. Settings: HTTPversion=override, uncheck Default to HTTP/2 & uncheck “Update content-length header”
 
 1. Basic payload
 ```
