@@ -27,7 +27,7 @@ BurpIntruder
 3. Resource Pool: Max-Concurrent=1, Fixed-Delay=1000ms
 4. Settings: HTTPversion=override, uncheck Default to HTTP/2 & uncheck “Update content-length header”
 
-
+##
 1. Basic payload
 ```
 #DoS
